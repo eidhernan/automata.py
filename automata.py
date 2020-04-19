@@ -3,6 +3,12 @@ Automata: a lightweight module that allows for easy creation of finite state mac
 """
 
 class Automaton:
+    """
+    An Automaton is a finite state machine object. It has a finite number of states, it has a dynamic size, so states can be added on the fly.
+    
+    Parameters: None
+    
+    """
     def __init__(self):
         self.states = {} # Dictionary containing all the states inside the Automaton object.
         self.state = "DEFAULT" # Setting the current state as "DEFAULT". When a default state is set, what really happens, is a state is created, called "DEFAULT".
