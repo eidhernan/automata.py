@@ -54,7 +54,7 @@ class Automaton:
 
         self.states[self.state]()
 
-    def register(self, allowed_states):
+    def register(self, allowed_states, default=False):
         """
         A wizard to automatically create a state for an Automaton object, by decorating a function. The function can access the Automaton object through a single positional argument for the function.
 
@@ -65,6 +65,8 @@ class Automaton:
             state = State(self, func.__name__, allowed_states, func) # Creates a state.
 
             self.add_state(state) # Creates a state based on the name of the function.
+            if default:
+                self.set_default(func.__name__)
             def wrapper():
                 func(self) # Calls the function, passing the Automaton object as a parameter to it to allow the function to access the Automaton itself (such as changing state internally)
             return wrapper
