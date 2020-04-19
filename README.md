@@ -146,3 +146,5 @@ if __name__ == "__main__":
     lock()
     lock()
 ```
+
+And there you have it. Though this is just an example, the finite state machine has many uses in programming. Have fun, and this project is open source, so you may fork this project and use it however you like.
