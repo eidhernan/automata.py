@@ -10,8 +10,10 @@ class Automaton:
     
     """
     def __init__(self):
-        self.states = {} # Dictionary containing all the states inside the Automaton object.
-        self.state = "DEFAULT" # Setting the current state as "DEFAULT". When a default state is set, what really happens, is a state is created, called "DEFAULT".
+        self.states = {} # The states of the Automaton are represented by a single dictionary, in a fasion of {"state name":<state object>}.
+        # The reason behind this is to allow easy lookup of states by name >>> self.states[state]
+        self.state = "DEFAULT" # The current state is represented by a string. This way, when it is time to access the state, you simply do self.states[self.state] to get the current state.
+     
 
     def add_state(self, state):
         """
@@ -23,7 +25,7 @@ class Automaton:
         Returns: Nothing.
         """
         
-        self.states[state.name] = state
+        self.states[state.name] = state # Update self.states. See documentation for self.states for more info.
 
     def set_default(self, state:str):
         """
@@ -36,6 +38,7 @@ class Automaton:
         """
 
         self.states["DEFAULT"] = self.states[state]
+        # This creates a new state, "DEFAULT", with the same exact functionality as the specified state.
     
     def change_state(self, state):
         """
@@ -45,14 +48,14 @@ class Automaton:
             state : The state to change to, as a string.
         """
 
-        self.state = state
+        self.state = state # Changes the state to the specified state name, as a string. See self.states for reasoning behind this.
 
     def __call__(self):
         """
         The 'trigger' for the Automaton object. It executes the current state.
         """
 
-        self.states[self.state]()
+        self.states[self.state]() # You see, the call() method for a State object calls the function assigned to the state, passing in the Automaton instance it belongs to, as a positional argument. 
 
     def register(self, allowed_states, default=False):
         """
